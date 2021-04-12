@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.signup {
+  width: 60%;
+  height: 400px;
+  border: 2px solid cadetblue;
+  text-align: center;
+  padding: 10px;
+  margin: 10px;
+  color: darkslategray;
+}
+
+.signup h1 {
+  margin-bottom: 50px;
+}
+
+#signupBtn {
+  margin-top: 40px;
+  width: 100%;
+  background-color: cadetblue;
+  border-color: cadetblue;
+}

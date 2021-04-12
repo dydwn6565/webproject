@@ -1,0 +1,27 @@
+.jumbotron {
+  background-color: cadetblue;
+  color: aliceblue;
+}
+
+.mainBtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.mainBtn button {
+  background-color: antiquewhite;
+  color: chocolate;
+  border: 1px solid antiquewhite;
+  margin: 10px;
+  cursor: pointer;
+}
+
+a {
+  color: aliceblue;
+}
+
+a:hover {
+  color: aliceblue;
+}
