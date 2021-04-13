@@ -11,6 +11,18 @@ body {
   pointer-events: none;
 }
 
+.column {
+  /* float: left; */
+  width: 25%;
+  /* padding: -10%; */
+  /* margin: auto; */
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

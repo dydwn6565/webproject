@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Axios from "axios";
+import "./css/Admin.css";
+
 function Admin() {
   // const [serverRequestList, setServerRequestList] = useState({});
   const [postMedicalStaff, setPostMedicalStaff] = useState("");
@@ -18,7 +20,7 @@ function Admin() {
   useEffect(() => {
     const getTotalServerRequest = () => {
       Axios.get(
-        "http://localhost:8001/totalServerRequest/" +
+        "https://heejaerica.online/4537/termproject/API/V1/totalServerRequest/" +
           localStorage.getItem("email"),
         {}
       ).then((response) => {

@@ -10,12 +10,13 @@ function LogIn() {
   const [userPassword, setUserPassword] = useState("");
   const history = useHistory();
 
+  let endPoint = "https://heejaerica.online/4537/termproject/API/V1/";
   const logInRequest = (e) => {
     e.preventDefault();
     if (userEmail === "" || userPassword === "") {
       alert("There is empty input box. Please fill in.");
     } else {
-      Axios.post("http://localhost:8001/login", {
+      Axios.post(endPoint + "login", {
         email: userEmail,
         password: userPassword,
       }).then((response) => {
@@ -40,7 +41,7 @@ function LogIn() {
   };
   const insertUserId = (userEmail) => {
     // console.log(userEmail)
-    Axios.post("http://localhost:8001/insertUserId", {
+    Axios.post(endPoint + "insertUserId", {
       userEmail: userEmail,
     }).then((response) => {
       console.log(response);
@@ -50,7 +51,7 @@ function LogIn() {
   const getUserEmail = () => {
     // console.log(localStorage.getItem("token"));
 
-    Axios.get("http://localhost:8001/authUser", {
+    Axios.get(endPoint + "authUser", {
       headers: {
         "x-access-token": localStorage.getItem("token"),
       },

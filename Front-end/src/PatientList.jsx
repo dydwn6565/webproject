@@ -20,9 +20,10 @@ function PatientList() {
   const [newDate, setNewDate] = useState("");
   const [newTime, setNewTime] = useState("");
 
+  let endPoint = "https://heejaerica.online/4537/termproject/API/V1/";
   const addCountRequest = (apiAddress) => {
     console.log(localStorage.getItem("email"));
-    Axios.post("http://localhost:8001/addCountRequest", {
+    Axios.post(endPoint + "addCountRequest", {
       apiAddress: apiAddress,
       userEmail: localStorage.getItem("email"),
     }).then((response) => {
@@ -32,12 +33,12 @@ function PatientList() {
 
   const getPatient = () => {
     addCountRequest("patientList");
-    Axios.get("http://localhost:8001/patientList").then((response) => {
+    Axios.get(endPoint + "patientList").then((response) => {
       setPatientList(response.data);
     });
   };
 
-  const addPatient = () => {
+  const addPatient = async () => {
     if (
       name === "" ||
       city === "" ||
@@ -49,15 +50,15 @@ function PatientList() {
       alert("Please fill in!");
     } else {
       addCountRequest("createPatient");
-      Axios.post("http://localhost:8001/createPatient", {
+      await Axios.post(endPoint + "createPatient", {
         name: name,
         city: city,
         mobile: mobile,
         gender: gender,
         date: date,
         time: time,
-      }).then(() => {
-        setPatientList([
+      }).then(async () => {
+        await setPatientList([
           ...patientList,
           {
             name: name,
@@ -69,11 +70,12 @@ function PatientList() {
           },
         ]);
       });
+      // getPatient();
       window.location.reload(false);
     }
   };
 
-  const editPatientName = (ID) => {
+  const editPatientName = async (ID) => {
     if (
       newName === "" ||
       newCity === "" ||
@@ -85,7 +87,7 @@ function PatientList() {
       alert("Please fill in!");
     } else {
       addCountRequest("updatePatient");
-      Axios.put("http://localhost:8001/updatePatient/", {
+      await Axios.put(endPoint + "updatePatient/", {
         name: newName,
         city: newCity,
         mobile: newMobile,
@@ -93,8 +95,8 @@ function PatientList() {
         date: newDate,
         time: newTime,
         ID: ID,
-      }).then((response) => {
-        setPatientList(
+      }).then(async (response) => {
+        await setPatientList(
           patientList.map((val) => {
             console.log(val);
             return val.ID === ID
@@ -110,6 +112,8 @@ function PatientList() {
               : val;
           })
         );
+        // getPatient();
+        window.location.reload(false);
       });
     }
   };
@@ -117,15 +121,13 @@ function PatientList() {
   const removePatient = (ID) => {
     console.log(ID);
     addCountRequest("deletePatient");
-    Axios.delete(`http://localhost:8001/deletePatient/${ID}`).then(
-      (response) => {
-        setPatientList(
-          patientList.filter((val) => {
-            return val.ID !== ID;
-          })
-        );
-      }
-    );
+    Axios.delete(endPoint + `deletePatient/${ID}`).then((response) => {
+      setPatientList(
+        patientList.filter((val) => {
+          return val.ID !== ID;
+        })
+      );
+    });
   };
 
   return (
